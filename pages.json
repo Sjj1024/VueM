@@ -1,0 +1,107 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"enablePullDownRefresh": true,
+				"titleNView": {
+					"searchInput": {
+						"borderRadius": "15px",
+						"placeholder": "输入要搜索内容",
+						"backgroundColor": "#fff"
+					},
+					"buttons": [{
+						"text": "搜索",
+						"fontSize": "18px",
+						"width": "48px"
+					}]
+				}
+			}
+		}, {
+			"path": "pages/videos/videos",
+			"style": {
+				"navigationBarTitleText": "视频",
+				"enablePullDownRefresh": false,
+				"titleNView": {
+					"searchInput": {
+						"borderRadius": "15px",
+						"placeholder": "输入要搜索内容",
+						"backgroundColor": "#fff"
+					},
+					"buttons": [{
+						"text": "搜索",
+						"fontSize": "18px",
+						"width": "48px"
+					}]
+				}
+			}
+
+		}, {
+			"path": "pages/navigate/navigate",
+			"style": {
+				"navigationBarTitleText": "导航",
+				"enablePullDownRefresh": false,
+				"titleNView": {
+					"searchInput": {
+						"borderRadius": "15px",
+						"placeholder": "输入要搜索内容",
+						"backgroundColor": "#fff"
+					},
+					"buttons": [{
+						"text": "搜索",
+						"fontSize": "18px",
+						"width": "48px"
+					}]
+				}
+			}
+
+		}, {
+			"path": "pages/myinfo/myinfo",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"enablePullDownRefresh": false
+			}
+
+		}
+	],
+	"tabBar": {
+		"color": "black",
+		"selectedColor": "#2f89fc",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"text": "首页",
+				"iconPath": "static/images/home-2-line.png",
+				"selectedIconPath": "static/images/home-2-fill.png"
+			},
+			{
+				"pagePath": "pages/videos/videos",
+				"text": "视频",
+				"iconPath": "static/images/youtube-line.png",
+				"selectedIconPath": "static/images/youtube-fill.png"
+			},
+			{
+				"pagePath": "pages/navigate/navigate",
+				"text": "导航",
+				"iconPath": "static/images/compass-line.png",
+				"selectedIconPath": "static/images/compass-fill.png"
+			},
+			{
+				"pagePath": "pages/myinfo/myinfo",
+				"text": "我的",
+				"iconPath": "static/images/user-line.png",
+				"selectedIconPath": "static/images/user-fill.png"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#2f89fc",
+		"backgroundColor": "#F8F8F8",
+		"app-plus": {
+			"bounce": "none"
+		}
+	},
+	"uniIdRouter": {}
+}
