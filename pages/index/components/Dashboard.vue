@@ -287,7 +287,7 @@
 				width: 97%;
 				padding: 10rpx;
 				font-size: 35rpx;
-				font-weight: 600;
+				font-weight: 700;
 				border-bottom: 1px solid #ccc;
 			}
 		}
@@ -310,7 +310,7 @@
 				width: 97%;
 				padding: 10rpx;
 				font-size: 35rpx;
-				font-weight: 600;
+				font-weight: 700;
 				border-bottom: 1px solid #ccc;
 			}
 
