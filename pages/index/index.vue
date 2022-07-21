@@ -26,7 +26,7 @@
 				activeNum: 0,
 				menuName: "",
 				timer: null,
-				menuList: ["首页", "生活", "编程", "前端", "数据", "爬虫", "软件", "技术"]
+				menuList: ["首页", "生活", "编程", "前端", "数据", "爬虫", "软件", "技术", "美图", "旅游"]
 			}
 		},
 		onLoad() {},
@@ -72,12 +72,14 @@
 			// #endif
 			background-color: #fff;
 			z-index: 999;
+			width: 100%;
 			height: 70rpx;
 			line-height: 70rpx;
 			color: black;
 			border-bottom: 1px solid #eee;
 
 			.menus {
+				width: 100%;
 				height: 70rpx;
 				line-height: 70rpx;
 				white-space: nowrap;
