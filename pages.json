@@ -101,7 +101,8 @@
 		"backgroundColor": "#F8F8F8",
 		"app-plus": {
 			"bounce": "none"
-		}
+		},
+		"onReachBottomDistance": 150
 	},
 	"uniIdRouter": {}
 }

@@ -29,15 +29,19 @@
 				menuList: ["首页", "生活", "编程", "前端", "数据", "爬虫", "软件", "技术"]
 			}
 		},
-		onLoad() {
-
-		},
+		onLoad() {},
 		onPullDownRefresh() {
 			console.log("下拉刷新");
 			this.timer = setInterval(() => {
 				uni.stopPullDownRefresh()
 				clearInterval(this.timer)
 			}, 1000)
+			uni.showToast({
+				title: '数据已更新....',
+				duration: 2000
+			});
+		},
+		onReachBottom() {
 			uni.showToast({
 				title: '数据已更新....',
 				duration: 2000
@@ -58,7 +62,16 @@
 
 <style lang="scss" scoped>
 	.content {
+		padding-top: 42px;
+
 		.navigate {
+			position: fixed;
+			top: 44px;
+			// #ifdef APP-PLUS
+			top: 0px;
+			// #endif
+			background-color: #fff;
+			z-index: 999;
 			height: 70rpx;
 			line-height: 70rpx;
 			color: black;
