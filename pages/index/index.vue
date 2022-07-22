@@ -10,9 +10,9 @@
 			</scroll-view>
 		</view>
 		<!-- 首页/菜单页 -->
-		<Dashboard v-if="activeNum === 0"></Dashboard>
-		<!-- 分类菜单展示 -->
-		<MenuList v-else :menuName="menuName"></MenuList>
+		<Dashboard v-show="activeNum === 0"></Dashboard>
+		<!-- 分类菜单展示：不同的菜单有不同的列表 -->
+		<MenuList v-for="(item, index) in menuNumList" v-show="activeNum === item" :menuName="menuName"> </MenuList>
 	</view>
 </template>
 
@@ -30,6 +30,15 @@
 			}
 		},
 		onLoad() {},
+		computed: {
+			menuNumList() {
+				var arr = new Array();
+				for (var i = 1; i < this.menuList.length; i++) {
+					arr.push(i)
+				}
+				return arr
+			}
+		},
 		onPullDownRefresh() {
 			console.log("下拉刷新");
 			this.timer = setInterval(() => {
@@ -41,12 +50,12 @@
 				duration: 2000
 			});
 		},
-		onReachBottom() {
-			uni.showToast({
-				title: '数据已更新....',
-				duration: 2000
-			});
-		},
+		// onReachBottom() {
+		// 	uni.showToast({
+		// 		title: '首页onReachBottom数据已更新....',
+		// 		duration: 2000
+		// 	});
+		// },
 		components: {
 			Dashboard,
 			MenuList
@@ -55,6 +64,16 @@
 			toMenu(index, menuName) {
 				this.activeNum = index;
 				this.menuName = menuName
+				console.log("当前激活index为", index);
+			},
+			isMenu(index) {
+				console.log("index", index);
+				if (this.activeNum === 0) {
+					return false
+				} else {
+					console.log("activeNum", this.activeNum === index);
+					return this.activeNum === index
+				}
 			}
 		}
 	}

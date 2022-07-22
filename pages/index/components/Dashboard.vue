@@ -1,25 +1,27 @@
 <template>
 	<view class="main">
-		<!-- 轮播图 -->
-		<u-swiper :autoplay="autoplay" height="150" :list="swiperList" keyName="url" indicator @change="change"
-			@click="click" circular>
-		</u-swiper>
-		<!-- 热门文章 -->
-		<view class="hot">
-			<text class="hot-title">热门文章：</text>
-			<u-list class="new-list">
-				<u-list-item v-for="(item, index) in hotList" :key="index">
-					<u-cell :title="item.title" class="new-item">
-						<u-avatar slot="icon" shape="square" size="35" :src="item.imgUrl"
-							customStyle="margin: -3px 5px -3px 0"></u-avatar>
-					</u-cell>
-				</u-list-item>
-			</u-list>
-		</view>
 		<!-- 最新文章 -->
 		<view class="news">
-			<text class="title">最新文章：</text>
-			<u-list class="new-list">
+			<u-list class="new-list" @scrolltolower="scrolltolower" lowerThreshold="150">
+				<u-list-item>
+					<!-- 轮播图 -->
+					<u-swiper :autoplay="autoplay" height="150" :list="swiperList" keyName="url" indicator
+						@change="change" @click="click" circular>
+					</u-swiper>
+					<!-- 热门文章 -->
+					<view class="hot">
+						<text class="hot-title">热门文章：</text>
+						<ul class="hot-list">
+							<li class="hot-item" v-for="(item, index) in hotList" :key="index">
+								<img :src="item.imgUrl" alt="你好" class="img">
+								<text>{{item.title}}</text>
+							</li>
+						</ul>
+					</view>
+				</u-list-item>
+				<u-list-item>
+					<text class="title">最新文章：</text>
+				</u-list-item>
 				<u-list-item class="new-item" v-for="(item, index) in articleList" :key="index">
 					<view :class="{'new-content': item.imgList.length === 1}">
 						<view class="new-title" :class="{'title-three':item.imgList.length === 1}">
@@ -254,6 +256,23 @@
 		onLoad() {
 			this.loadmore()
 		},
+		onPullDownRefresh() {
+			console.log("下拉刷新");
+			this.timer = setInterval(() => {
+				uni.stopPullDownRefresh()
+				clearInterval(this.timer)
+			}, 1000)
+			uni.showToast({
+				title: '数据已更新....',
+				duration: 2000
+			});
+		},
+		// onReachBottom() {
+		// 	uni.showToast({
+		// 		title: '数据已更新....',
+		// 		duration: 2000
+		// 	});
+		// },
 		methods: {
 			change() {
 				// console.log("改变了");
@@ -263,14 +282,17 @@
 				this.autoplay = false
 			},
 			scrolltolower() {
-				this.loadmore()
+				console.log("滚动到底部了");
+				uni.showToast({
+					title: '数据已更新....',
+					duration: 2000
+				});
 			},
 			loadmore() {
-				for (let i = 0; i < 30; i++) {
-					this.indexList.push({
-						url: this.urls[uni.$u.random(0, this.urls.length - 1)]
-					})
-				}
+				uni.showToast({
+					title: '数据已更新....',
+					duration: 2000
+				});
 			}
 		}
 	}
@@ -278,9 +300,30 @@
 
 <style lang="scss" scoped>
 	.main {
+		height: auto !important;
+
 		.hot {
-			padding: 5rpx 20rpx;
-			// height: 550rpx;
+			padding: 5rpx 10rpx;
+			height: auto !important;
+			margin-bottom: 10px;
+
+			.hot-list {
+				padding: 0;
+
+				.hot-item {
+					display: flex;
+					flex-direction: row;
+					padding: 5px 0px;
+					border-bottom: 1px solid #eee;
+					font-size: 30rpx;
+
+					.img {
+						width: 50px;
+						height: 50px;
+						margin-right: 10px;
+					}
+				}
+			}
 
 			.hot-title {
 				display: inline-block;
@@ -293,7 +336,9 @@
 		}
 
 		.new-list {
-			height: auto !important;
+			// height: auto !important;
+			height: 100vh;
+			overflow-y: auto;
 
 			.new-item {
 				::v-deep .u-cell__body {
@@ -304,6 +349,8 @@
 
 		.news {
 			padding: 5rpx 20rpx;
+			// height: 100vh;
+			overflow-y: auto;
 
 			.title {
 				display: inline-block;

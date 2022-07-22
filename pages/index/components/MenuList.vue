@@ -1,27 +1,27 @@
 <template>
-	<view class="menu-list">
-		<view class="news">
-			<text class="title">菜单新闻列表---{{menuName}}</text>
-			<u-list class="new-list">
-				<u-list-item class="new-item" v-for="(item, index) in articleList" :key="index">
-					<view :class="{'new-content': item.imgList.length === 1}">
-						<view class="new-title" :class="{'title-three':item.imgList.length === 1}">
-							{{item.title}}
-						</view>
-						<view class="new-imgs" v-if="item.imgList.length > 0">
-							<image :src="imgUrl" mode="scaleToFill" v-for="(imgUrl, index) in item.imgList" :key="index"
-								class="pre-img" :class="{'one-img':item.imgList.length === 1}">
-							</image>
-						</view>
+	<view class="news">
+		<u-list class="new-list" @scrolltolower="scrolltolower" lowerThreshold="150">
+			<u-list-item>
+				<text class="title">菜单新闻列表---{{menuName}}</text>
+			</u-list-item>
+			<u-list-item class="new-item" v-for="(item, index) in articleList" :key="index">
+				<view :class="{'new-content': item.imgList.length === 1}">
+					<view class="new-title" :class="{'title-three':item.imgList.length === 1}">
+						{{item.title}}
 					</view>
-					<view class="new-info">
-						<text class="info">{{item.author}}</text>
-						<text class="info">{{item.commites}}评论</text>
-						<text class="info">{{item.timer}}小时前</text>
+					<view class="new-imgs" v-if="item.imgList.length > 0">
+						<image :src="imgUrl" mode="scaleToFill" v-for="(imgUrl, index) in item.imgList" :key="index"
+							class="pre-img" :class="{'one-img':item.imgList.length === 1}">
+						</image>
 					</view>
-				</u-list-item>
-			</u-list>
-		</view>
+				</view>
+				<view class="new-info">
+					<text class="info">{{item.author}}</text>
+					<text class="info">{{item.commites}}评论</text>
+					<text class="info">{{item.timer}}小时前</text>
+				</view>
+			</u-list-item>
+		</u-list>
 	</view>
 </template>
 
@@ -200,13 +200,40 @@
 				default: "默认",
 				type: String
 			}
+		},
+		onPullDownRefresh() {
+			console.log("下拉刷新");
+			this.timer = setInterval(() => {
+				uni.stopPullDownRefresh()
+				clearInterval(this.timer)
+			}, 1000)
+			uni.showToast({
+				title: '数据已更新....',
+				duration: 2000
+			});
+		},
+		methods: {
+			scrolltolower() {
+				console.log("滚动到底部了");
+				uni.showToast({
+					title: '数据已更新....',
+					duration: 2000
+				});
+			}
 		}
 	}
 </script>
 
 <style scoped lang="scss">
+	// .menu-list {
+	// 	height: 100vh;
+	// 	overflow-y: auto;
+	// }
+
 	.new-list {
-		height: auto !important;
+		// 要设置一个高度，否则无效
+		height: 95vh;
+		overflow-y: auto;
 
 		.new-item {
 			::v-deep .u-cell__body {
@@ -217,6 +244,8 @@
 
 	.news {
 		padding: 5rpx 20rpx;
+		height: 95vh;
+		overflow-y: auto;
 
 		.title {
 			display: inline-block;
