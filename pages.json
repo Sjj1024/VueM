@@ -22,19 +22,19 @@
 			"path": "pages/videos/videos",
 			"style": {
 				"navigationBarTitleText": "视频",
-				"enablePullDownRefresh": false,
-				"titleNView": {
-					"searchInput": {
-						"borderRadius": "15px",
-						"placeholder": "输入要搜索内容",
-						"backgroundColor": "#fff"
-					},
-					"buttons": [{
-						"text": "搜索",
-						"fontSize": "18px",
-						"width": "48px"
-					}]
-				}
+				"enablePullDownRefresh": false
+				// "titleNView": {
+				// 	"searchInput": {
+				// 		"borderRadius": "15px",
+				// 		"placeholder": "输入要搜索内容",
+				// 		"backgroundColor": "#fff"
+				// 	},
+				// 	"buttons": [{
+				// 		"text": "搜索",
+				// 		"fontSize": "18px",
+				// 		"width": "48px"
+				// 	}]
+				// }
 			}
 
 		}, {

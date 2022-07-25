@@ -67,45 +67,22 @@
 					}
 				],
 				hotList: [{
-						title: "iOS点击顶部状态栏、安卓双击标题栏时...",
-						imgUrl: 'https://cdn.uviewui.com/uview/album/1.jpg'
-					},
-					{
-						title: "没什么特别要做的。车子开到了停车场，自...",
-						imgUrl: 'https://cdn.uviewui.com/uview/album/2.jpg'
-					}, {
-						title: "自己应该停在哪里。这个过程比预想中简单...",
-						imgUrl: 'https://cdn.uviewui.com/uview/album/3.jpg'
-					}, {
-						title: "周围毫无可逛一逛的风景，人们慵懒地敞开...",
-						imgUrl: 'https://cdn.uviewui.com/uview/album/4.jpg'
-					}, {
-						title: "坐在车子里玩儿着手机，或者呼呼大睡。我...",
-						imgUrl: 'https://cdn.uviewui.com/uview/album/5.jpg'
-					}, {
-						title: "只是围着自己的汽车转悠。轮船比预定时间...",
-						imgUrl: 'https://cdn.uviewui.com/uview/album/6.jpg'
-					}
-				],
+					title: "没什么特别要做的。车子开到了停车场，自...",
+					imgUrl: 'https://cdn.uviewui.com/uview/album/2.jpg'
+				}, {
+					title: "自己应该停在哪里。这个过程比预想中简单...",
+					imgUrl: 'https://cdn.uviewui.com/uview/album/3.jpg'
+				}, {
+					title: "周围毫无可逛一逛的风景，人们慵懒地敞开...",
+					imgUrl: 'https://cdn.uviewui.com/uview/album/4.jpg'
+				}, {
+					title: "坐在车子里玩儿着手机，或者呼呼大睡。我...",
+					imgUrl: 'https://cdn.uviewui.com/uview/album/5.jpg'
+				}, {
+					title: "只是围着自己的汽车转悠。轮船比预定时间...",
+					imgUrl: 'https://cdn.uviewui.com/uview/album/6.jpg'
+				}],
 				articleList: [{
-						title: "使用uni-app提供的scroll-view组件",
-						imgList: [
-							"https://img-blog.csdnimg.cn/img_convert/539ee665a9a7bfc58303467aa27421fe.jpeg",
-							"https://img-blog.csdnimg.cn/img_convert/083a2793a43d8d5e464cdaf84920f44f.jpeg",
-							"https://img-blog.csdnimg.cn/img_convert/31e1bedc46adf2d5448f18dfd60e0b70.gif"
-						],
-						author: "人民日报",
-						commites: "100",
-						timer: "10"
-					},
-					{
-						title: "这种切换不管是在app端仍是小程序或者H5页面都是很常见的功能",
-						imgList: [],
-						author: "光明网",
-						commites: "16",
-						timer: "8"
-					},
-					{
 						title: "当然这时候还有力气和心思欣赏，应接不暇的辽阔与无暇的蓝",
 						imgList: [
 							"https://img-blog.csdnimg.cn/img_convert/7d12420bd3666d1b8b457858efbf69e3.jpeg",

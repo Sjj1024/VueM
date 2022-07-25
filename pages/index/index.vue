@@ -50,12 +50,6 @@
 				duration: 2000
 			});
 		},
-		// onReachBottom() {
-		// 	uni.showToast({
-		// 		title: '首页onReachBottom数据已更新....',
-		// 		duration: 2000
-		// 	});
-		// },
 		components: {
 			Dashboard,
 			MenuList
