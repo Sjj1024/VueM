@@ -74,7 +74,7 @@
 <style lang="scss" scoped>
 	.item-box {
 		width: 100%;
-		margin-bottom: 10px;
+		// margin-bottom: 10px;
 
 		.nav-title {
 			display: block;

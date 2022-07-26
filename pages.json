@@ -22,7 +22,10 @@
 			"path": "pages/videos/videos",
 			"style": {
 				"navigationBarTitleText": "视频",
-				"enablePullDownRefresh": false
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": false // 禁用原生导航栏
+				}
 				// "titleNView": {
 				// 	"searchInput": {
 				// 		"borderRadius": "15px",
@@ -59,8 +62,11 @@
 		}, {
 			"path": "pages/myinfo/myinfo",
 			"style": {
-				"navigationBarTitleText": "我的",
-				"enablePullDownRefresh": false
+				"navigationBarTitleText": "用户中心",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": false // 禁用原生导航栏
+				}
 			}
 
 		}

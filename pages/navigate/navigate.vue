@@ -189,5 +189,7 @@
 	.nav-box {
 		width: 100%;
 		padding: 5px 0px 0px 0px;
+		background-color: #eee;
+		// background: url("https://img-blog.csdnimg.cn/img_convert/ead5b542358076f0d7a1d39e0f687ee3.jpeg") no-repeat;
 	}
 </style>
