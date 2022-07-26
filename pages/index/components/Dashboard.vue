@@ -67,19 +67,19 @@
 					}
 				],
 				hotList: [{
-					title: "没什么特别要做的。车子开到了停车场，自...",
+					title: "没什么特别要做的。车子开到了停车场，就去地下餐厅吃饭了...",
 					imgUrl: 'https://cdn.uviewui.com/uview/album/2.jpg'
 				}, {
-					title: "自己应该停在哪里。这个过程比预想中简单...",
+					title: "自己应该停在哪里。这个过程比预想中简单很多...",
 					imgUrl: 'https://cdn.uviewui.com/uview/album/3.jpg'
 				}, {
-					title: "周围毫无可逛一逛的风景，人们慵懒地敞开...",
+					title: "周围毫无可逛一逛的风景，人们慵懒地敞开胸膛躺在草地上...",
 					imgUrl: 'https://cdn.uviewui.com/uview/album/4.jpg'
 				}, {
-					title: "坐在车子里玩儿着手机，或者呼呼大睡。我...",
+					title: "坐在车子里玩儿着手机，或者呼呼大睡。我拿着相机到处拍...",
 					imgUrl: 'https://cdn.uviewui.com/uview/album/5.jpg'
 				}, {
-					title: "只是围着自己的汽车转悠。轮船比预定时间...",
+					title: "只是围着自己的汽车转悠。轮船比预定时间晚到了2小时...",
 					imgUrl: 'https://cdn.uviewui.com/uview/album/6.jpg'
 				}],
 				articleList: [{

@@ -5,7 +5,10 @@
 			<view class="nav-content">
 				<view v-for="(link, index) in navLinks" :key="index" class="nav-link" hover-class="checkActive"
 					hover-stay-time="100" @click="openBrowser(link.url)">
-					<view class="link">{{ link.name }}</view>
+					<view class="link">
+						<image src="../../../static/images/chongzhi.png" mode="" class="link-img"></image>
+						<text class="link-text">{{ link.name }}</text>
+					</view>
 				</view>
 			</view>
 		</slot>
@@ -74,7 +77,7 @@
 <style lang="scss" scoped>
 	.item-box {
 		width: 100%;
-		// margin-bottom: 10px;
+		margin-bottom: 10px;
 
 		.nav-title {
 			display: block;
@@ -99,7 +102,7 @@
 			}
 
 			.nav-link {
-				width: 25%;
+				width: 33.33%;
 				height: 40px;
 				box-sizing: border-box;
 				line-height: 40px;
@@ -112,10 +115,19 @@
 				// }
 
 				.link {
-					display: block;
-					// height: 30px;
-					// line-height: 30px;
-					// border-bottom: 1px solid rgb(47, 137, 252);
+					display: flex;
+					justify-content: space-evenly;
+					align-items: center;
+
+					.link-img {
+						width: 25px;
+						height: 25px;
+						margin-right: 5px;
+					}
+
+					.link-text {
+						font-size: 16px;
+					}
 				}
 			}
 		}

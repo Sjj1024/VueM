@@ -8,19 +8,19 @@
 		<view class="my-info">
 			<view class="info-action">
 				<image src="../../static/images/collector.png" mode="" class="info-img"></image>
-				<text>我的收藏</text>
+				<text class="info-text">我的收藏</text>
 			</view>
 			<view class="info-action">
 				<image src="../../static/images/commites.png" mode="" class="info-img"></image>
-				<text>我的消息</text>
+				<text class="info-text">我的消息</text>
 			</view>
 			<view class="info-action">
 				<image src="../../static/images/downloader.png" mode="" class="info-img"></image>
-				<text>下载管理</text>
+				<text class="info-text">下载管理</text>
 			</view>
 			<view class="info-action">
 				<image src="../../static/images/times.png" mode="" class="info-img"></image>
-				<text>浏览历史</text>
+				<text class="info-text">浏览历史</text>
 			</view>
 		</view>
 		<!-- 软件设置 -->
@@ -29,51 +29,51 @@
 			<ul class="my-setting">
 				<li class="action-set">
 					<image src="../../static/images/kefu.png" mode="" class="set-img"></image>
-					<text>客服中心</text>
+					<text class="set-text">客服中心</text>
 				</li>
 				<li class="action-set">
 					<image src="../../static/images/qianbao.png" mode="" class="set-img"></image>
-					<text>我的钱包</text>
+					<text class="set-text">我的钱包</text>
 				</li>
 				<li class="action-set">
 					<image src="../../static/images/guanggao.png" mode="" class="set-img"></image>
-					<text>广告推广</text>
+					<text class="set-text">广告推广</text>
 				</li>
 				<li class="action-set">
 					<image src="../../static/images/anquan.png" mode="" class="set-img"></image>
-					<text>安全中心</text>
+					<text class="set-text">安全中心</text>
 				</li>
 				<li class="action-set">
 					<image src="../../static/images/yinsi.png" mode="" class="set-img"></image>
-					<text>隐私设置</text>
+					<text class="set-text">隐私设置</text>
 				</li>
 				<li class="action-set">
 					<image src="../../static/images/pinglun.png" mode="" class="set-img"></image>
-					<text>评论管理</text>
+					<text class="set-text">评论管理</text>
 				</li>
 				<li class="action-set">
 					<image src="../../static/images/gouwuche.png" mode="" class="set-img"></image>
-					<text>购物车</text>
+					<text class="set-text">购物车</text>
 				</li>
 				<li class="action-set">
 					<image src="../../static/images/yonghuxieyi.png" mode="" class="set-img"></image>
-					<text>用户协议</text>
+					<text class="set-text">用户协议</text>
 				</li>
 				<li class="action-set">
 					<image src="../../static/images/ruanjiangengxin.png" mode="" class="set-img"></image>
-					<text>软件更新</text>
+					<text class="set-text">软件更新</text>
 				</li>
 				<li class="action-set">
 					<image src="../../static/images/guanyuwomen.png" mode="" class="set-img"></image>
-					<text>关于我们</text>
+					<text class="set-text">关于我们</text>
 				</li>
-				<li class="action-set">
+				<li class="action-set" @click="toPay">
 					<image src="../../static/images/chongzhi.png" mode="" class="set-img"></image>
-					<text>金币充值</text>
+					<text class="set-text">金币充值</text>
 				</li>
 				<li class="action-set">
 					<image src="../../static/images/tuijian.png" mode="" class="set-img"></image>
-					<text>推荐有奖</text>
+					<text class="set-text">推荐有奖</text>
 				</li>
 			</ul>
 		</view>
@@ -87,6 +87,13 @@
 
 			};
 		},
+		methods: {
+			toPay() {
+				uni.navigateTo({
+					url: "/subpkg/myMoney/myMoney"
+				})
+			}
+		}
 	}
 </script>
 
@@ -130,10 +137,15 @@
 				display: flex;
 				flex-direction: column;
 				align-items: center;
+				padding: 8px 0px;
 
 				.info-img {
-					width: 40px;
-					height: 40px;
+					width: 26px;
+					height: 26px;
+				}
+
+				.info-text {
+					font-size: 12px;
 				}
 			}
 		}
@@ -168,8 +180,12 @@
 					list-style: none;
 
 					.set-img {
-						width: 40px;
-						height: 40px;
+						width: 30px;
+						height: 30px;
+					}
+
+					.set-text {
+						font-size: 12px;
 					}
 				}
 			}

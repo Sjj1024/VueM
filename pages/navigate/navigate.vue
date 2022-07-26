@@ -83,11 +83,10 @@
 					{
 						title: "在线影视",
 						links: [{
-								name: "爱奇艺",
-								url: "https://www.baidu.com/"
-							},
-							{
 								name: "腾讯视频",
+								url: "https://www.baidu.com/"
+							}, {
+								name: "爱奇艺",
 								url: "https://www.baidu.com/"
 							},
 							{
@@ -107,15 +106,14 @@
 					{
 						title: "技术学习",
 						links: [{
+								name: "黑客教程",
+								url: "https://www.baidu.com/"
+							}, {
 								name: "Bilibili",
 								url: "https://www.baidu.com/"
 							},
 							{
 								name: "幕客视频",
-								url: "https://www.baidu.com/"
-							},
-							{
-								name: "黑客教程",
 								url: "https://www.baidu.com/"
 							},
 							{
@@ -188,7 +186,7 @@
 <style lang="scss" scoped>
 	.nav-box {
 		width: 100%;
-		padding: 5px 0px 0px 0px;
+		padding: 5px 0px 10px 0px;
 		background-color: #eee;
 		// background: url("https://img-blog.csdnimg.cn/img_convert/ead5b542358076f0d7a1d39e0f687ee3.jpeg") no-repeat;
 	}

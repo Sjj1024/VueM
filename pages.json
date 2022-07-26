@@ -23,20 +23,30 @@
 			"style": {
 				"navigationBarTitleText": "视频",
 				"enablePullDownRefresh": false,
+				// "navigationBarBackgroundColor": "transparent",
 				"app-plus": {
 					"titleNView": false // 禁用原生导航栏
+				},
+				"titleNView": {
+					"searchInput": {
+						"borderRadius": "15px",
+						"placeholder": "输入要搜索内容",
+						"backgroundColor": "#fff"
+					},
+					"buttons": [{
+						"text": "搜索",
+						"fontSize": "18px",
+						"width": "48px"
+					}]
 				}
-				// "titleNView": {
-				// 	"searchInput": {
-				// 		"borderRadius": "15px",
-				// 		"placeholder": "输入要搜索内容",
-				// 		"backgroundColor": "#fff"
-				// 	},
-				// 	"buttons": [{
-				// 		"text": "搜索",
-				// 		"fontSize": "18px",
-				// 		"width": "48px"
-				// 	}]
+				// "app-plus": {
+				// 	"animationType": "fade-in", // 设置fade-in淡入动画，为最合理的动画类型
+				// 	"background": "transparent", // 背景透明
+				// 	"backgroundColor": "rgba(0,0,0,0)", // 背景透明
+				// 	"webviewBGTransparent": true,
+				// 	"mask": "none",
+				// 	"opacity": 0.9,
+				// 	"popGesture": "none" // 关闭IOS屏幕左边滑动关闭当前页面的功能
 				// }
 			}
 
@@ -71,6 +81,30 @@
 
 		}
 	],
+	"subPackages": [{
+		"root": "subpkg",
+		"pages": [{
+			"path": "pay/pay",
+			"style": {
+				"navigationBarTitleText": "金币充值",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "article/article",
+			"style": {
+				"navigationBarTitleText": "文章详情",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "myMoney/myMoney",
+			"style": {
+				"navigationBarTitleText": "我的金币",
+				"enablePullDownRefresh": false
+			}
+
+		}]
+	}],
 	"tabBar": {
 		"color": "#000",
 		"selectedColor": "#2f89fc",
@@ -104,6 +138,8 @@
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#2f89fc",
+		// "navigationBarBackgroundColor": "transparent",
+		// "navigationBarBackgroundColor": "rgb(0,0,0,0)",
 		"backgroundColor": "#F8F8F8",
 		"app-plus": {
 			"bounce": "none"
