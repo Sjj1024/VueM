@@ -26,6 +26,15 @@
 		transition-timing-function: linear; //匀速滚动
 	}
 
+	/* 	::-webkit-scrollbar {
+		display: none;
+		width: 0 !important;
+		height: 0 !important;
+		-webkit-appearance: none;
+		background: transparent;
+		color: transparent;
+	} */
+
 	/* 	wx wx-swiper .wx-swiper-wrapper {
 		width: 100px;
 		height: 100px;
