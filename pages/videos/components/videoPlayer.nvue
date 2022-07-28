@@ -1,17 +1,18 @@
 <template>
-	<video :id="'myVideo'+ video.id" @click="click" @play="changePlay" class="video" :controls="true" :loop="false"
-		:src="video.src" :poster="video.preImg" :show-progress="true" object-fit="fill"
+	<video :id="'myVideo'+ video.id" @click="click" @play="changePlay" class="video" :controls="disable" :loop="false"
+		:src="video.src" :poster="video.preImg" :show-progress="true" object-fit="fill" :autoplay="autoplay"
 		:style="{height:screenHeight+'px', width: windowWidth + 'px'}">
 	</video>
 </template>
 
 <script>
 	export default {
-		props: ['video', "screenHeight", "windowWidth"],
+		props: ['video', "screenHeight", "windowWidth", "autoplay"],
 		name: "videoPlayer",
 		data() {
 			return {
 				play: false,
+				disable: true
 			};
 		},
 		onReady() {

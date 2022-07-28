@@ -1,101 +1,123 @@
 <template>
-	<swiper class="swiper" :style="{height:screenHeight+'px', width: windowWidth + 'px'}" :vertical="true"
-		@change="change" @touchstart="touchStart" @touchend="touchEnd">
-		<swiper-item v-for="item of videoList2" :style="{height:screenHeight+'px', width: windowWidth + 'px'}"
-			:key="item.id" class="swiper-item">
-			<videoPlayer :video="item" :screenHeight="screenHeight" :windowWidth="windowWidth" ref="player">
+	<swiper class="swiper" :current="wrapIndex" :style="{height:screenHeight+'px', width: windowWidth + 'px'}"
+		:vertical="true" @change="change" @touchstart="touchStart" @touchend="touchEnd">
+		<!-- 普通视频和图片流 -->
+		<swiper-item v-for="item of videoList" :style="{height:screenHeight+'px', width: windowWidth + 'px'}"
+			:key="item.id" ref="swiperItem" :data-type="item.type" class="swiper-item">
+			<!-- 视频流 -->
+			<videoPlayer v-if="item.type === 'video'" :video="item" :screenHeight="screenHeight" :autoplay="false"
+				:windowWidth="windowWidth" :style="{height:screenHeight+'px', width: windowWidth + 'px'}" ref="player">
 			</videoPlayer>
+			<!-- 直播流/判断平台 -->
+			<!-- #ifdef APP-PLUS -->
+			<livePlayer v-else-if="item.type === 'live'" :ref="'liveNvue'" :liveSrc="item.src"></livePlayer>
+			<!-- #endif -->
+			<!-- 图片轮播 -->
+			<swiper v-else class="swiper" circular :indicator-dots="true" :autoplay="true" @change="changeswiper"
+				:current="currentImgIndex" :style="{height:screenHeight+'px', width: windowWidth + 'px'}">
+				<swiper-item v-for="(img,index) in item.imgList" :key="index">
+					<image :src="img" mode="scaleToFill" :style="{height:screenHeight+'px', width: windowWidth + 'px'}">
+					</image>
+				</swiper-item>
+			</swiper>
 		</swiper-item>
 	</swiper>
 </template>
 
 <script>
 	import videoPlayer from "./components/videoPlayer.nvue"
+	import livePlayer from "./components/livePlayer.nvue"
+
 	var time = null
 	export default {
 		props: ["myList"],
 		components: {
 			videoPlayer,
+			livePlayer
 		},
 		name: "video-list",
 		data() {
 			return {
 				videoList: [{
+						id: 7,
+						type: "image",
+						imgList: [
+							'https://img-blog.csdnimg.cn/img_convert/4ce460a31366926464acc88c991721d9.jpeg',
+							'https://img-blog.csdnimg.cn/img_convert/a8d701d5adc9008ca018905f43c34145.jpeg',
+							'https://img-blog.csdnimg.cn/img_convert/3090b46bd91e5c7ee5d78d988fbae0bd.jpeg',
+							"https://img-blog.csdnimg.cn/img_convert/08acb513a12e1d7d654cc43cf4e2ee48.jpeg",
+							"https://img-blog.csdnimg.cn/img_convert/eebf7eefba5849ef9788e32c148061c8.jpeg"
+						],
+					}, {
 						id: 1,
+						type: "video",
 						preImg: "http://p1-q.mafengwo.net/s16/M00/8D/4D/CoUBUmFZOWKAA8mQAA8Oww0vs7k240.jpg",
 						src: "https://txmov2.a.yximgs.com/upic/2020/03/14/16/BMjAyMDAzMTQxNjIwMDlfMTI0OTQzNzMzOV8yNDk0OTExNDY1NF8xXzM=_b_B8cf5a4391531e161385a32cdadfef87c.mp4"
 					},
 					{
+						id: 9,
+						type: "live",
+						preImg: "http://p1-q.mafengwo.net/s16/M00/8D/4D/CoUBUmFZOWKAA8mQAA8Oww0vs7k240.jpg",
+						src: "https://pull-flv-l1.douyincdn.com/stage/stream-687793461105000478_or4.flv"
+					},
+					{
+						id: 8,
+						type: "image",
+						imgList: [
+							'https://img-blog.csdnimg.cn/img_convert/eb06724f35a0436820a23b388c8c7217.jpeg',
+							'https://img-blog.csdnimg.cn/img_convert/3090b46bd91e5c7ee5d78d988fbae0bd.jpeg',
+							"https://img-blog.csdnimg.cn/img_convert/08acb513a12e1d7d654cc43cf4e2ee48.jpeg",
+							"https://img-blog.csdnimg.cn/img_convert/eebf7eefba5849ef9788e32c148061c8.jpeg"
+						],
+					},
+					{
+						id: 10,
+						type: "live",
+						preImg: "http://p1-q.mafengwo.net/s16/M00/8D/4D/CoUBUmFZOWKAA8mQAA8Oww0vs7k240.jpg",
+						src: "https://pull-flv-l6.douyincdn.com/stage/stream-687793714576228383_or4.flv"
+					},
+					{
 						id: 2,
+						type: "video",
 						preImg: "http://b1-q.mafengwo.net/s16/M00/23/F3/CoUBUmFbN5OAGqEkAA4O0V-U1uo031.jpg",
 						src: "https://txmov2.a.yximgs.com/upic/2020/10/02/09/BMjAyMDEwMDIwOTAwMDlfMTIyMjc0NTk0Ml8zNjk3Mjg0NjcxOF8xXzM=_b_B28a4518e86e2cf6155a6c1fc9cf79c6d.mp4"
 					},
 					{
+						id: 11,
+						type: "live",
+						preImg: "http://p1-q.mafengwo.net/s16/M00/8D/4D/CoUBUmFZOWKAA8mQAA8Oww0vs7k240.jpg",
+						src: "https://pull-flv-l26-spe.ixigua.com/fantasy/stream-111330049078853654_hd.flv"
+					},
+					{
 						id: 3,
+						type: "video",
 						preImg: "http://p1-q.mafengwo.net/s16/M00/23/F4/CoUBUmFbN5WAbMikAA5cYlWno5U709.jpg",
 						src: "https://txmov6.a.yximgs.com/upic/2020/08/23/00/BMjAyMDA4MjMwMDMyNDRfMTYzMzY5MDA0XzM0ODI4MDcyMzQ5XzFfMw==_b_B9a1c9d4e3a090bb2815994d7f33a906a.mp4"
 					},
 					{
 						id: 4,
+						type: "video",
 						preImg: "http://p1-q.mafengwo.net/s18/M00/E6/C0/CoUBYGFceTyAOSBqABFXcMPFJ1w112.jpg",
 						src: "https://alimov2.a.yximgs.com/upic/2020/03/04/15/BMjAyMDAzMDQxNTU3MTdfMzE3MDM5OTAzXzI0NDUwNjQ1MzgxXzFfMw==_b_B53c20819cb9a2103b9805b0144f545cf.mp4"
 					},
 					{
 						id: 5,
+						type: "video",
 						preImg: "http://p1-q.mafengwo.net/s18/M00/E6/C0/CoUBYGFceTyAOSBqABFXcMPFJ1w112.jpg",
 						src: "https://txmov2.a.yximgs.com/upic/2020/07/14/16/BMjAyMDA3MTQxNjEyNDBfMTU3MDQyNjA0XzMyMzUyOTQ4NzM0XzJfMw==_b_Bd53949260b17aaa7b712526aa61e590a.mp4"
 					},
 					{
 						id: 6,
+						type: "video",
 						preImg: "http://p1-q.mafengwo.net/s18/M00/E6/C0/CoUBYGFceTyAOSBqABFXcMPFJ1w112.jpg",
 						src: "https://txmov2.a.yximgs.com/upic/2020/09/28/15/BMjAyMDA5MjgxNTAwMTlfNjk3OTM4NjUzXzM2NzQyNzU5MzA2XzFfMw==_b_B6e8aca57e704ac40b34856eb663b8d57.mp4"
 					},
 				],
-				videoList2: [{
-						id: 1,
-						preImg: "http://p1-q.mafengwo.net/s18/M00/E6/C0/CoUBYGFceTyAOSBqABFXcMPFJ1w112.jpg",
-						src: "https://v1.kwaicdn.com/upic/2022/07/21/10/BMjAyMjA3MjExMDMxMzhfMTkyOTkyNjI5MV83OTczMTk4OTE5NV8wXzM=_b_B1513fafdfeac10a5f2c102b46cc7cf6d.mp4?pkey=AAVU95cesZRvET9zjS7-znl9j9mxPDr6BUgBVCoT0YSy2oA2SBhwrYcm-cuSVfsurdw5T8ap5F22bHMo7C0jFox-IXNbYRvhXqZapjkjWYBUHXhX6acMob2CyYlXN0p9hrQ&tag=1-1658808041-unknown-0-qznbnikekx-16abbac3c57f5c7c&clientCacheKey=3xphq7ykwh3j8sc_b.mp4"
-					},
-					{
-						id: 2,
-						preImg: "http://p1-q.mafengwo.net/s18/M00/E6/C0/CoUBYGFceTyAOSBqABFXcMPFJ1w112.jpg",
-						src: "https://v2.kwaicdn.com/upic/2022/07/24/18/BMjAyMjA3MjQxODU0MDFfMjExMTUyNjU2N184MDAyNjQ1MDU0NF8xXzM=_b_Bdf5a751ee9d24215bd24928c382be757.mp4?pkey=AAWvE55eG_5vyrhSF0StUVzQqyNUUnxpwVjHb6ZiWMqUATJFfNnfAboGlZ9vvNw49qYdz1P4WaV0N4cy1obkMU5EuFQ9i60JXogcO3tP6g_Fx4CDa-8uIPrVakZ77H5K9l4&tag=1-1658808260-unknown-0-xs7jz8qp8r-43295148556c7a76&clientCacheKey=3x9jv9pd9ptvujy_b.mp4"
-					},
-					{
-						id: 3,
-						preImg: "http://p1-q.mafengwo.net/s18/M00/E6/C0/CoUBYGFceTyAOSBqABFXcMPFJ1w112.jpg",
-						src: "https://v2.kwaicdn.com/upic/2022/07/24/07/BMjAyMjA3MjQwNzA0MzNfMjQ1OTM3MzYwOF83OTk3NjIzMTE3M18xXzM=_b_Bf0efc6fdce728b18015aa42476d28b86.mp4?pkey=AAXrRYuO-x2MxadxhW4bv7QL18ejMNW_X5rrBvTlA37KR6CM2yTAbhAnh5jPZkvfn66MaEngIDrrMeJHDEE4FQXI6xdCaX6XjeIVwwAIsoIcHmQDtcDB2Y5ufWoWV_fIeMs&tag=1-1658808283-unknown-0-wcmqortwfe-a2fddc769229c385&clientCacheKey=3xwqmqkwstc3bqg_b.mp4"
-					},
-					{
-						id: 4,
-						preImg: "http://p1-q.mafengwo.net/s18/M00/E6/C0/CoUBYGFceTyAOSBqABFXcMPFJ1w112.jpg",
-						src: "https://v1.kwaicdn.com/upic/2022/07/23/17/BMjAyMjA3MjMxNzA0MzdfMjkwOTAyMzkzN183OTkzMDgzMDI0MV8yXzM=_b_B7b773b2cf95babf99b6f69ac7e5ae415.mp4?pkey=AAUtzh1NHgd--6r8mD1qXKHra9-bAq2kxmugqUX0foj9ZHcTw6Hut5NXd0QWdZ3ziZMZHmfeUPiiIpt4Fao3NkDl98BVvbZsgvDD1SaGAyp694Y4YtFpaUhg6Hr7R0k7hX0&tag=1-1658808317-unknown-0-swcvyf4poq-6715721f0d1a9f2c&clientCacheKey=3xh5ie5hygupz22_b.mp4"
-					},
-					{
-						id: 5,
-						preImg: "http://p1-q.mafengwo.net/s18/M00/E6/C0/CoUBYGFceTyAOSBqABFXcMPFJ1w112.jpg",
-						src: "https://v2.kwaicdn.com/upic/2022/07/25/18/BMjAyMjA3MjUxODA0MjRfMjMwODA1OTk1NF84MDEwNzg5MDkxMV8xXzM=_b_Ba488c7a61a87254e9dcf9bf752c2503c.mp4?pkey=AAXxlBm5RgSo9Mek0Gzo3TfzRdKnIHxK_EJsu1_kGqDYY0TnUWcgfFbTdlEHjPY_MSimoLi4DHTGea-mc-1qYW_YxvX5tw66RPsjwIuh2CzWpF-qXZm_0QGInXU4Yxhz9hE&tag=1-1658808335-unknown-0-diwc1a6ixn-43f965ed71b829b8&clientCacheKey=3x6mgb757cay9zq_b.mp4"
-					},
-					{
-						id: 6,
-						preImg: "http://p1-q.mafengwo.net/s18/M00/E6/C0/CoUBYGFceTyAOSBqABFXcMPFJ1w112.jpg",
-						src: "https://v2ndvs9h4wrckhf9pv4kaycerkz5pxrx8.mobgslb.tbcache.com/v2.kwaicdn.com/upic/2022/07/25/12/BMjAyMjA3MjUxMjIwMThfMTc5MzIxODY4OV84MDA4MDg2NzgyMl8xXzM=_b_B881a0290eba038cb91932088df0e71e5.mp4?pkey=AAV67XJw0zZxjCb2WrEtEu9gJ5V30KHx8NvuuwEXBE516rEfhf7tNrXkszR99SR8OatRyaRgyJg8VmFllzrN0vYfy-YC6Q_VD-83OZJqxt0L4E9GHKd-lMCK0b9tdVF3lLg&tag=1-1658808348-unknown-0-yk4tdeyfsr-17a946ee373f7025&clientCacheKey=3xifm7yqjjdhujw_b.mp4"
-					},
-					{
-						id: 7,
-						preImg: "http://p1-q.mafengwo.net/s18/M00/E6/C0/CoUBYGFceTyAOSBqABFXcMPFJ1w112.jpg",
-						src: "https://v1.kwaicdn.com/upic/2022/07/21/10/BMjAyMjA3MjExMDMxMzhfMTkyOTkyNjI5MV83OTczMTk4OTE5NV8wXzM=_b_B1513fafdfeac10a5f2c102b46cc7cf6d.mp4?pkey=AAVU95cesZRvET9zjS7-znl9j9mxPDr6BUgBVCoT0YSy2oA2SBhwrYcm-cuSVfsurdw5T8ap5F22bHMo7C0jFox-IXNbYRvhXqZapjkjWYBUHXhX6acMob2CyYlXN0p9hrQ&tag=1-1658808041-unknown-0-qznbnikekx-16abbac3c57f5c7c&clientCacheKey=3xphq7ykwh3j8sc_b.mp4"
-					},
-					{
-						id: 8,
-						preImg: "http://p1-q.mafengwo.net/s18/M00/E6/C0/CoUBYGFceTyAOSBqABFXcMPFJ1w112.jpg",
-						src: "https://v1.kwaicdn.com/upic/2022/07/21/10/BMjAyMjA3MjExMDMxMzhfMTkyOTkyNjI5MV83OTczMTk4OTE5NV8wXzM=_b_B1513fafdfeac10a5f2c102b46cc7cf6d.mp4?pkey=AAVU95cesZRvET9zjS7-znl9j9mxPDr6BUgBVCoT0YSy2oA2SBhwrYcm-cuSVfsurdw5T8ap5F22bHMo7C0jFox-IXNbYRvhXqZapjkjWYBUHXhX6acMob2CyYlXN0p9hrQ&tag=1-1658808041-unknown-0-qznbnikekx-16abbac3c57f5c7c&clientCacheKey=3xphq7ykwh3j8sc_b.mp4"
-					},
-				],
-				pageStartY: 0,
-				pageEndY: 0,
 				screenHeight: 0,
-				windowWidth: 0
+				windowWidth: 0,
+				currentImgIndex: 0,
+				wrapIndex: 0,
+				play: false
 			};
 		},
 		mounted() {
@@ -110,31 +132,89 @@
 		},
 		methods: {
 			change(res) {
-				clearTimeout(time)
+				console.log("change事件执行了");
+				this.wrapIndex = res.detail.current
 				this.page = res.detail.current
-				time = setTimeout(() => {
-					if (this.pageStartY > this.pageEndY) {
-						console.log("向上滑动" + this.page);
-						this.$refs.player[this.page].playVideo()
-						this.$refs.player[this.page - 1].pauseVideo()
+				let swiperPre = this.$refs.swiperItem[this.page - 1]
+				let swiperItem = this.$refs.swiperItem[this.page]
+				let swiperNext = this.$refs.swiperItem[this.page + 1]
+				let currentType = swiperItem.$attrs["dataType"]
+				console.log("this.pageStartY---" + this.pageStartY);
+				console.log("this.pageEndY---" + this.pageEndY);
+				console.log("swiperItem---", swiperItem.$children[0]);
+				if ((this.pageStartY - this.pageEndY) >= 30) {
+					console.log("向上滑动当前页:" + this.page);
+					console.log("当前媒体类型:" + currentType);
+					if (currentType === "video") {
+						swiperItem.$children[0].playVideo()
 						this.pageStartY = 0
 						this.pageEndY = 0
 					} else {
-						console.log("向下滑动" + this.page);
-						this.$refs.player[this.page].playVideo()
-						this.$refs.player[this.page + 1].pauseVideo()
+						console.log("改变图片索引:");
+						this.currentImgIndex = 0
+					}
+					if (swiperPre.$attrs["dataType"] === "video") {
+						swiperPre.$children[0].pauseVideo()
+					} else if (swiperPre.$attrs["dataType"] === "live") {
+						console.log("控制直播的暂停和播放");
+						swiperPre.$children[0].click()
+					}
+					// 控制直播的暂停和播放
+					if (currentType === "live") {
+						console.log("控制直播的暂停和播放");
+						// this.$refs.liveNvue[0].click()
+						swiperItem.$children[0].click()
+					}
+				} else if ((this.pageStartY - this.pageEndY) < -150) {
+					console.log("向下滑动" + this.page);
+					console.log("当前媒体类型:" + currentType);
+					if (currentType === "video") {
+						swiperItem.$children[0].playVideo()
 						this.pageStartY = 0
 						this.pageEndY = 0
+					} else {
+						console.log("改变图片索引:");
+						this.currentImgIndex = 0
 					}
-				}, 1)
+					if (swiperNext.$attrs["dataType"] === "video") {
+						swiperNext.$children[0].pauseVideo()
+					} else if (swiperNext.$attrs["dataType"] === "live") {
+						console.log("控制直播的暂停和播放");
+						// this.$refs.liveNvue[0].click()
+						swiperNext.$children[0].click()
+					}
+					// 控制直播的暂停和播放
+					if (currentType === "live") {
+						console.log("控制直播的暂停和播放");
+						// this.$refs.liveNvue[0].click()
+						swiperItem.$children[0].click()
+					}
+				}
 			},
 			touchStart(res) {
 				this.pageStartY = res.changedTouches[0].pageY;
-				console.log(this.pageStartY);
+				console.log("touchStart：" + this.pageStartY);
 			},
 			touchEnd(res) {
 				this.pageEndY = res.changedTouches[0].pageY;
-				console.log(this.pageEndY);
+				console.log("touchEnd：" + this.pageEndY);
+				let platform = uni.getSystemInfoSync().platform;
+				if (platform == 'android') {
+					if ((this.pageStartY - this.pageEndY) > 150) {
+						console.log("向上滑动:");
+						if (this.wrapIndex < (this.videoList.length - 1)) {
+							this.wrapIndex = this.wrapIndex + 1
+						}
+					} else if ((this.pageStartY - this.pageEndY) < -150) {
+						console.log("向下滑动:");
+						if (this.wrapIndex > 1) {
+							this.wrapIndex = this.wrapIndex - 1
+						}
+					}
+				}
+			},
+			changeswiper(e) {
+				this.currentImgIndex = e.detail.current
 			}
 		},
 		watch: {
@@ -146,15 +226,6 @@
 </script>
 
 <style>
-	/* 	.swiper {
-		width: 750rpx;
-	}
-
-	.swiper-item {
-		width: 750rpx;
-		z-index: 9;
-	}
- */
 	.swiper-img {
 		width: 100vw;
 		height: 100vh;

@@ -12,7 +12,8 @@
 		<!-- 首页/菜单页 -->
 		<Dashboard v-show="activeNum === 0"></Dashboard>
 		<!-- 分类菜单展示：不同的菜单有不同的列表 -->
-		<MenuList v-for="(item, index) in menuNumList" v-show="activeNum === item" :menuName="menuName"> </MenuList>
+		<MenuList v-for="(item, index) in menuNumList" :key="index" v-show="activeNum === item" :menuName="menuName">
+		</MenuList>
 	</view>
 </template>
 

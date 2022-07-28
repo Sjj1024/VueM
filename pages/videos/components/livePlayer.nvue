@@ -1,0 +1,75 @@
+<template>
+	<video id="liveVideo" :autoplay="false" :controls="true" :show-center-play-btn="true"
+		:style="{height:screenHeight+'px', width: windowWidth + 'px'}" object-fit="fill" @click="click" ref="player"
+		:src="liveSrc" preload="auto">
+	</video>
+</template>
+
+<script>
+	export default {
+		props: {
+			liveSrc: {
+				default: "https://pull-flv-l26-spe.ixigua.com/fantasy/stream-111330049078853654_hd.flv",
+				type: String
+			}
+		},
+		data() {
+			return {
+				screenHeight: 0,
+				windowWidth: 0,
+				play: false
+			}
+		},
+		mounted() {
+			uni.getSystemInfo({
+				success: (res) => {
+					console.log("首页获取到的页面高度:windowHeight", res.windowHeight);
+					console.log("首页获取到的页面高度:windowWidth", res.windowWidth);
+					this.windowWidth = res.windowWidth;
+					this.screenHeight = res.windowHeight;
+				}
+			});
+
+			this.videoContext = uni.createVideoContext("liveVideo", this)
+		},
+		methods: {
+			click() {
+				console.log("click", this.play);
+				if (!this.play) {
+					this.playthis()
+				} else {
+					this.pauseVideo()
+				}
+			},
+			playVideo() {
+				console.log("livePlayer下面的playVideo");
+				if (this.play === false) {
+					this.videoContext.seek(0)
+					this.videoContext.play()
+				} else {
+					this.videoContext.play()
+				}
+				this.play = true
+			},
+			pauseVideo() {
+				console.log("pauseVideo");
+				if (this.play === true) {
+					this.videoContext.pause()
+					this.play = false
+				}
+			},
+			playthis() {
+				// console.log("playthis", this.video.id);
+				if (this.play === false) {
+					console.log("playthis");
+					this.videoContext.play()
+					this.play = true
+				}
+			},
+		}
+	}
+</script>
+
+<style>
+
+</style>
