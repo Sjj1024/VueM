@@ -1,20 +1,18 @@
 <template>
 	<swiper class="swiper" :vertical="true" @change="change" @touchstart="touchStart" @touchend="touchEnd">
+		<swiper-item>
+			<!-- 直播流/判断平台 -->
+			<video src="https://pull-flv-l1.douyincdn.com/stage/stream-687793461105000478_or4.flv" />
+		</swiper-item>
 		<block v-for="item of videoList" :key="item.id">
-			<swiper-item ref="swiperItem" data-type="video" class="swiper-item" v-if="item.type === 'video'">
+			<swiper-item v-if="item.type === 'video'" ref="swiperItem" data-type="video" class="swiper-item">
 				<videoPlayer :video="item" ref="player"></videoPlayer>
 			</swiper-item>
 			<!-- 直播流/判断平台 -->
-			<!-- #ifndef APP-PLUS -->
-			<live-player v-else-if="item.type === 'live'" :style="{height:screenHeight+'px', width: windowWidth + 'px'}"
-				:src="item.src" :object-fit="fillCrop"></live-player>
-			<!-- #endif -->
-			<!-- #ifdef APP-PLUS -->
-			<video v-else-if="item.type === 'live'" :autoplay="false" :controls="true"
-				:style="{height:screenHeight+'px', width: windowWidth + 'px'}" object-fit="fill"
-				src="https://pull-flv-l11.douyincdn.com/third/stream-111331819072782812_hd.flv" preload="auto"></video>
-			<!-- #endif -->
-			<swiper-item ref="swiperItem" data-type="img" v-else>
+			<live-player v-else-if="item.type === 'live'"
+				src="https://pull-flv-l1.douyincdn.com/stage/stream-687793461105000478_or4.flv">
+			</live-player>
+			<swiper-item v-else ref="swiperItem" data-type="img">
 				<swiper :style="{height:screenHeight+'px'}" class="img-boxs" circular :indicator-dots="true"
 					:autoplay="true" :current="currentImgIndex" @change="changeswiper">
 					<swiper-item v-for="(item, index) in item.imgList" :key="index">
@@ -38,6 +36,12 @@
 		data() {
 			return {
 				videoList: [{
+						id: 9,
+						type: "live",
+						preImg: "http://p1-q.mafengwo.net/s16/M00/8D/4D/CoUBUmFZOWKAA8mQAA8Oww0vs7k240.jpg",
+						src: "https://pull-flv-l1.douyincdn.com/stage/stream-687793461105000478_or4.flv"
+					},
+					{
 						id: 7,
 						type: "image",
 						imgList: [
@@ -47,7 +51,8 @@
 							"https://img-blog.csdnimg.cn/img_convert/08acb513a12e1d7d654cc43cf4e2ee48.jpeg",
 							"https://img-blog.csdnimg.cn/img_convert/eebf7eefba5849ef9788e32c148061c8.jpeg"
 						],
-					}, {
+					},
+					{
 						id: 1,
 						type: "video",
 						preImg: "http://p1-q.mafengwo.net/s16/M00/8D/4D/CoUBUmFZOWKAA8mQAA8Oww0vs7k240.jpg",
@@ -65,11 +70,6 @@
 						],
 					},
 					{
-						id: 9,
-						type: "live",
-						preImg: "http://p1-q.mafengwo.net/s16/M00/8D/4D/CoUBUmFZOWKAA8mQAA8Oww0vs7k240.jpg",
-						src: "https://pull-flv-l11.douyincdn.com/third/stream-111331250459378140_hd.flv"
-					}, {
 						id: 2,
 						type: "video",
 						preImg: "http://b1-q.mafengwo.net/s16/M00/23/F3/CoUBUmFbN5OAGqEkAA4O0V-U1uo031.jpg",
@@ -101,6 +101,7 @@
 					},
 				],
 				screenHeight: 0,
+				windowWidth: 0,
 				currentImgIndex: 0
 			};
 		},
