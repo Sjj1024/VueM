@@ -15,12 +15,15 @@
 <style>
 	/*每个页面公共css */
 	/* 去除scroll滚动条 */
+	/* #ifndef APP-NVUE */
 	::-webkit-scrollbar {
 		display: none;
 		width: 0;
 		height: 0;
 		background-color: transparent;
 	}
+
+	/* #endif */
 
 	.swiper-wrapper {
 		transition-timing-function: linear; //匀速滚动
