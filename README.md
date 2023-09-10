@@ -6,7 +6,7 @@
 ![](https://img-blog.csdnimg.cn/27fca94a584f47de8de067d0f94b972f.jpeg)
 
 ### 视频页
-![](https://img-blog.csdnimg.cn/446c741c540c482399fd7eedbca8c3d7.jpeg)
+![](https://cdn.staticaly.com/gh/1024huijia/FileHub@main/root/others/1694339047319image.png)
 
 ### 导航页
 ![](https://img-blog.csdnimg.cn/378e95556fd04860817da4e9ebf832df.jpeg)
