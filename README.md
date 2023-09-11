@@ -1,24 +1,5 @@
 # VueM
+一个使用Uniapp开发的移动端软件，支持图文展示和阅读，接入视频播放，支持上下滑动的视频切换，类似抖音效果。也支持直播视频流播放。支持个人中心设置和金币充值，支持银行卡微信支付宝充值。
 
-### 首页
-<img src="https://img-blog.csdnimg.cn/c136ad85880f455394d30b475e6ccc8a.jpeg" alt="">
-
-![](https://img-blog.csdnimg.cn/27fca94a584f47de8de067d0f94b972f.jpeg)
-
-### 视频页
-![](https://cdn.staticaly.com/gh/1024huijia/FileHub@main/root/others/1694339047319image.png)
-
-### 导航页
-![](https://img-blog.csdnimg.cn/378e95556fd04860817da4e9ebf832df.jpeg)
-
-### 我的
-![](https://img-blog.csdnimg.cn/e26ce595b51549c7a6557cb9d61249df.jpeg)
-
-### 支付页
-![](https://img-blog.csdnimg.cn/c27782992ac84075bea9d2152af12212.jpeg)
-
-![](https://img-blog.csdnimg.cn/9df80e159ab146759f800292c5fc64c5.jpeg)
-
-![](https://img-blog.csdnimg.cn/8faf54e63ebb407a8877581e59b896bf.jpeg)
-
-![](https://github.com/Sjj1024/VueM/blob/main/static/erweima.jpeg)
+### 部分页面展示
+<img src="https://cdn.staticaly.com/gh/1024huijia/QingChunMeizi@master/20230911/vuem.1uod5h1odnp.webp" alt="">
